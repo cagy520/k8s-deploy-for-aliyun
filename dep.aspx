@@ -6,7 +6,7 @@
         <h1>KUBE-CAGY</h1>
         <p class="lead">K8S快速部署页面！</p>
          <p class="lead">
-            域名地址:<asp:TextBox ID="txtDomain" runat="server" Width="153px" ></asp:TextBox>.app.funenc.com（只写前缀）</p>
+            域名地址:<asp:TextBox ID="txtDomain" runat="server" Width="153px" ></asp:TextBox>.yourdomain.com（只写前缀）</p>
         <p class="lead">
             应用名称:<asp:TextBox ID="txtName" runat="server" Width="154px" ></asp:TextBox>
             只能用英文小写xxx-xxx,表写错了哈</p>
@@ -74,7 +74,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
-    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-bp1fgv4f4ayv01dbj9awc
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-你的负载均衡名称
   name: %cagy-svc
   namespace: default
 spec:
@@ -101,14 +101,14 @@ metadata:
   namespace: default
 spec:
   rules:
-    - host: %domain.app.funenc.com
+    - host: %domain.yourdomain.com
       http:
         paths:
           - backend:
               serviceName: %cagy-svc
               servicePort: 8069
             path: /
-    - host: log.%domain.app.funenc.com
+    - host: log.%domain.yourdomain.com
       http:
         paths:
           - backend:
